@@ -1,0 +1,11 @@
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\bin\Debug\net8.0\ConsulCrud.Shared.deps.json
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\bin\Debug\net8.0\ConsulCrud.Shared.dll
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\bin\Debug\net8.0\ConsulCrud.Shared.pdb
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.AssemblyInfoInputs.cache
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.AssemblyInfo.cs
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.csproj.CoreCompileInputs.cache
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.dll
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\refint\ConsulCrud.Shared.dll
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ConsulCrud.Shared.pdb
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\PacienteCrud.Shared\obj\Debug\net8.0\ref\ConsulCrud.Shared.dll

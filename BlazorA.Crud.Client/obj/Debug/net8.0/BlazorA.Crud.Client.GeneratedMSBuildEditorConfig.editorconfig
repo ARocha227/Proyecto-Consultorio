@@ -1,0 +1,83 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorA.Crud.Client
+build_property.RootNamespace = BlazorA.Crud.Client
+build_property.ProjectDir = C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\BlazorA.Crud.Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\BlazorA.Crud.Client
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Layout/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Departamento.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVwYXJ0YW1lbnRvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Departamenttos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVwYXJ0YW1lbnR0b3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Diagnostico.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlhZ25vc3RpY28ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Diagnostticos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGlhZ25vc3R0aWNvcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Paciente.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFjaWVudGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Pacientes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFjaWVudGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Profesional.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmVzaW9uYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Pages/Profesionales.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmVzaW9uYWxlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-mbq6rr0hst
+
+[C:/Users/alvar/Desktop/Aplicacion Web/SolucionConsultorio/BlazorA.Crud.Client/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-l6ncqj8j0v

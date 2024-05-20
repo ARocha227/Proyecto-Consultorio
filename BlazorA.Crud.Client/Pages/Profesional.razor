@@ -1,0 +1,96 @@
+﻿@page "/profesionals"
+
+@using ConsulCrud.Shared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using Blazor1.Crud.Client.Services;
+
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize(Roles = "Administrador")]
+
+@inject SweetAlertService SwalAR;
+
+@inject IProfesionalService profesionalService;
+
+
+<h3>Profesional</h3>
+
+<a class="btn btn-success btn-sm mb-3" href="profesionales"> Nuevo Profesional </a>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Identificador</th>
+			<th>Nombre Completo</th>
+			<th>Correo Electronico</th>
+			<th>Telefono</th>
+			<th>Codigo Profional</th>
+			<th>Direccion (Domicilio) </th>
+			<th>Fecha Nacimiento</th>
+			<th>Fecha y Hora Registro</th>
+			<th></th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		@if (listaProfesional == null)
+		{
+				<tr>
+					<td colspan="9" align="center"> 
+						<img style="width:50px" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+
+					</td>
+				</tr>
+		}
+		else
+		{
+			@foreach (var item in listaProfesional)
+			{
+						<tr>
+							<td>@item.IdIdentificador</td>
+							<td>@item.NombreCompleto</td>
+							<td>@item.CorreoElectronico</td>
+							<td>@item.Telefono</td>
+							<td>@item.CdigoProfesional</td>
+							<td>@item.Direccion</td>
+							<td>@item.FechaNacimiento</td>
+							<td>@item.HoraRegistro</td>
+
+							<td>
+											<a class="btn btn-primary mr-sm-2 mb-2" href="profesionales/@item.IdCodigoP">
+											<i class="bi bi-pencil-square">Editar</i>		
+								</a>
+
+										<button type="button" class="btn btn-danger mr-sm-2 mb-2" @onclick="(() => Eliminar(item.IdCodigoP))">
+										<i class="bi bi-trash3-fill">Borrar</i>
+
+								</button>
+							</td>
+						</tr>
+			}
+		}
+	</tbody>
+</table>
+
+
+@code {
+
+	List<ProfesionalDTO>? listaProfesional = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		listaProfesional = await profesionalService.Lista();
+
+	}
+
+	private async Task Eliminar(int id)
+	{
+		var resultado = await SwalAR.FireAsync(new SweetAlertOptions
+			{
+				Title = "Eliminar Profesional",
+				Text = "¿Deseas Eliminar el Profesional?",
+				Icon = SweetAlertIcon.Question,
+				ShowCancelButton = true
+
+			});
+	}
+}

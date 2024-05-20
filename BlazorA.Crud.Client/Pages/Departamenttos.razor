@@ -1,0 +1,82 @@
+﻿@page "/departamenttos";
+@page "/departamenttos/{idDepartamentoEditar:int}";
+
+
+@using ConsulCrud.Shared;
+@using Blazor1.Crud.Client.Services;
+
+@inject IDepartamentoService departamentoService;
+@inject NavigationManager navegacion;
+
+
+
+<h3>@titulo</h3>
+
+<EditForm Model="departamento" OnValidSubmit="OnValidSubmit" >
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+
+	<div class= "mb-3">
+		<label class="form-label">Nombre Del Departamento</label>
+		<InputText class="form-control" @bind-Value="departamento.Nombre"></InputText>
+		<ValidationMessage For="@(() => departamento.Nombre)"> </ValidationMessage>
+	</div>
+
+	<button class="btn btn-primary" type="submit">
+		@btnTexto 
+	</button>
+
+	<a class="btn btn-warning" href="departamentos">Volver</a>
+
+</EditForm>
+
+@code {
+	[Parameter]
+	public int idDepartamentoEditar { get; set; } = 0;
+
+	string titulo = string.Empty;
+	string btnTexto = string.Empty;
+
+	DepartamentoDTO departamento = new DepartamentoDTO();
+	List<DepartamentoDTO> listaDepartamento = new List<DepartamentoDTO>();
+
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		if (idDepartamentoEditar != 0)
+
+		{
+			departamento = await departamentoService.Buscar(idDepartamentoEditar);
+			btnTexto = "Actualizar Departamento";
+			titulo = "Editar Departamento";
+
+		}
+		else
+		{
+			btnTexto = "Guardar Departamento";
+			titulo = "Nuevo Departamento";
+		}
+
+		listaDepartamento = await departamentoService.Lista();
+
+	}
+
+	private async Task OnValidSubmit()
+	{
+		int idDevuelto = 0;
+		if (idDepartamentoEditar == 0)
+		{
+			idDevuelto = await departamentoService.Guardar(departamento);
+		}
+		else
+		{
+			idDevuelto = await departamentoService.Editar(departamento);
+		}
+
+		if (idDevuelto != 0)
+		{
+			navegacion.NavigateTo("/departamentos");
+		}
+
+	}
+}

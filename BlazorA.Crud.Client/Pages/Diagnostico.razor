@@ -1,0 +1,128 @@
+﻿@page "/diagnosticos"
+@using ConsulCrud.Shared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using Blazor1.Crud.Client.Services;
+@using System.Text.Json
+
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize (Roles ="Administrador")]
+
+@inject SweetAlertService SwalAR;
+
+@inject IDiagnosticoService diagnosticoService;
+
+
+
+<h3>Diagnostico</h3>
+
+<div>
+	<a class="btn btn-success btn-sm mb-3" href="diagnostticos"> Nuevo Diagnostico </a>
+</div>
+
+<div>
+	<p>
+		PARA BUSCAR SELECCIONE LA TECLA Fn + F3 O PRECIONE CLIC DERECHO.   
+	</p>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+
+			<th>Identificador del Paciente</th>
+			<th>Nombre Del Paciente</th>
+			<th>Motivo de Consulta</th>
+			<th>Antecedentes Patologicos</th>
+			<th>Estilo de Vida</th>
+			<th>Resultado</th>
+			<th>Observaciones</th>
+			<th>Profesional Evaluador(a)</th>
+			<th>Codigo Del Profesional(a)</th>
+			<th>Fecha y Hora de Registro</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (listadiagnostico == null)
+		{
+				<tr>
+					<td colspan="9" align="center"> 
+						<img style="width:50px" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+
+					</td>
+				</tr>
+		}
+		else
+		{
+			@foreach (var item in listadiagnostico)
+			{
+						<tr>
+							<td>@item.Paciente!.IdPaciente</td>
+							<td>@item.Paciente!.NombreCompleto</td>
+							<td>@item.MotivoConsulta</td>
+							<td>@item.AntecedentesPatologicos</td>
+							<td>@item.EstiloVida</td>
+							<td>@item.Resultado</td>
+							<td>@item.Observaciones</td>
+							<td>@item.Profesional!.NombreCompleto</td>
+							<td>@item.Profesional!.CdigoProfesional</td>
+							<td>@item.FechaRegistro</td>
+
+							<td>
+										<a class="btn btn-primary mr-sm-2 mb-2" href="diagnostticos/@item.IdDiagnostico">
+										<i class="bi bi-house-door-fill-nav-menu">Editar</i>		
+								</a>
+
+										<button type="button" class="btn btn-danger mr-sm-2 mb-2" @onclick="(() => Eliminar(item.IdDiagnostico))">
+										<i class="bi bi-trash3-fill">Borrar</i>
+
+								</button>
+							</td>
+						</tr>
+			}
+		}
+	</tbody>
+</table>
+
+
+@code {
+	private int paginasTotales;
+	private int paginaActual = 1;
+	private string nombrePersonaFiltro = string.Empty;
+
+
+	List<DiagnosticoDTO>? listadiagnostico = null;
+	private string NombrePacienteBusqueda = string.Empty;
+	
+	protected override async Task OnInitializedAsync()
+	{
+		listadiagnostico = await diagnosticoService.Lista();
+
+	}
+
+	private async Task Eliminar(int id)
+	{
+		var resultado = await SwalAR.FireAsync(new SweetAlertOptions
+			{
+				Title = "Eliminar Diagnostico",
+				Text = "¿Deseas Eliminar el Diagnostico?",
+				Icon = SweetAlertIcon.Question,
+				ShowCancelButton = true
+
+			});
+
+		if (resultado.IsConfirmed)
+		{
+			var eliminado = await diagnosticoService.Eliminar(id);
+
+			if (eliminado)
+				listadiagnostico = listadiagnostico!.FindAll(e => e.IdDiagnostico != id);
+		}
+	}
+
+
+
+
+
+
+}

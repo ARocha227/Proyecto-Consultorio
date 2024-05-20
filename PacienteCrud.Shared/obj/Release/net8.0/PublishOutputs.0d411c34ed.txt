@@ -1,0 +1,3 @@
+C:\Users\alvar\Desktop\Aplicacion Web\PublicarWeb\ConsulCrud.Shared.dll
+C:\Users\alvar\Desktop\Aplicacion Web\PublicarWeb\ConsulCrud.Shared.deps.json
+C:\Users\alvar\Desktop\Aplicacion Web\PublicarWeb\ConsulCrud.Shared.pdb

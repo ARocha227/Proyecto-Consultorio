@@ -1,0 +1,699 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ConsulCrud.Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Departamento/Lista": {
+      "get": {
+        "tags": [
+          "Departamento"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Departamento/Buscar/{id}": {
+      "get": {
+        "tags": [
+          "Departamento"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Departamento/Guardar": {
+      "post": {
+        "tags": [
+          "Departamento"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DepartamentoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Departamento/Editar/{id}": {
+      "put": {
+        "tags": [
+          "Departamento"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DepartamentoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Departamento/Eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "Departamento"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Diagnostico/Lista": {
+      "get": {
+        "tags": [
+          "Diagnostico"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Diagnostico/Buscar/{id}": {
+      "get": {
+        "tags": [
+          "Diagnostico"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Diagnostico/Guardar": {
+      "post": {
+        "tags": [
+          "Diagnostico"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DiagnosticoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Diagnostico/Editar/{id}": {
+      "put": {
+        "tags": [
+          "Diagnostico"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DiagnosticoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Diagnostico/Eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "Diagnostico"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Paciente/Lista": {
+      "get": {
+        "tags": [
+          "Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Paciente/Buscar/{id}": {
+      "get": {
+        "tags": [
+          "Paciente"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Paciente/Guardar": {
+      "post": {
+        "tags": [
+          "Paciente"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PacienteDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Paciente/Editar/{id}": {
+      "put": {
+        "tags": [
+          "Paciente"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PacienteDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Paciente/Eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "Paciente"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Profesional/Lista": {
+      "get": {
+        "tags": [
+          "Profesional"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Profesional/Buscar/{id}": {
+      "get": {
+        "tags": [
+          "Profesional"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Profesional/Guardar": {
+      "post": {
+        "tags": [
+          "Profesional"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ProfesionalDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Profesional/Editar/{id}": {
+      "put": {
+        "tags": [
+          "Profesional"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ProfesionalDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Profesional/Eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "Profesional"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Usuario/Login": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LogginDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DepartamentoDTO": {
+      "required": [
+        "nombre"
+      ],
+      "type": "object",
+      "properties": {
+        "iddepartamento": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nombre": {
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "DiagnosticoDTO": {
+      "required": [
+        "antecedentesPatologicos",
+        "estiloVida",
+        "evaluador",
+        "idNuevo",
+        "motivoConsulta",
+        "observaciones",
+        "resultado"
+      ],
+      "type": "object",
+      "properties": {
+        "idDiagnostico": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "idNuevo": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "motivoConsulta": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "antecedentesPatologicos": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "estiloVida": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "resultado": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observaciones": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evaluador": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "fechaRegistro": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "paciente": {
+          "$ref": "#/definitions/PacienteDTO"
+        },
+        "profesional": {
+          "$ref": "#/definitions/ProfesionalDTO"
+        }
+      }
+    },
+    "LogginDTO": {
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "clave": {
+          "type": "string"
+        }
+      }
+    },
+    "PacienteDTO": {
+      "required": [
+        "correoElectronico",
+        "direccion",
+        "estadoCivil",
+        "fechaNacimiento",
+        "iddepartamento",
+        "idPaciente",
+        "nacionalidad",
+        "nombreCompleto",
+        "telefono"
+      ],
+      "type": "object",
+      "properties": {
+        "idNuevo": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "idPaciente": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "nombreCompleto": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "iddepartamento": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "correoElectronico": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "telefono": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "direccion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "estadoCivil": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "nacionalidad": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fechaNacimiento": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "horaRegistro": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "departamento": {
+          "$ref": "#/definitions/DepartamentoDTO"
+        }
+      }
+    },
+    "ProfesionalDTO": {
+      "required": [
+        "cdigoProfesional",
+        "correoElectronico",
+        "direccion",
+        "fechaNacimiento",
+        "idIdentificador",
+        "nombreCompleto",
+        "telefono"
+      ],
+      "type": "object",
+      "properties": {
+        "idCodigoP": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "idIdentificador": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "nombreCompleto": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "correoElectronico": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "telefono": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "cdigoProfesional": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "direccion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fechaNacimiento": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "horaRegistro": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

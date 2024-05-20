@@ -1,0 +1,159 @@
+﻿@page "/paciente";
+@page "/paciente/{idPacienteEditar:int}";
+
+
+@using ConsulCrud.Shared;
+@using Blazor1.Crud.Client.Services;
+
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize(Roles = "Administrador")]
+ 
+@inject IPacienteService PacienteService;
+@inject IDepartamentoService departamentoService;
+@inject NavigationManager navegacion;
+
+<h3>@titulo</h3>
+
+<EditForm Model="paciente" OnValidSubmit="OnValidSubmit">
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+
+	<div class= "mb-3">
+		<label class="form-label">Identificador</label>
+		<InputNumber class="form-control" @bind-Value="paciente.IdPaciente"></InputNumber>
+		<ValidationMessage For="@(() => paciente.IdPaciente)"> </ValidationMessage>
+	</div>
+	
+	<div class= "mb-3">
+		<label class="form-label">Nombre Completo</label>
+		<InputText class="form-control" @bind-Value="paciente.NombreCompleto"> </InputText>
+		<ValidationMessage For="@(()=> paciente.NombreCompleto)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Departamento</label>
+		<InputSelect class="form-select" @bind-Value="paciente.Iddepartamento"> 
+
+			<option  value="0">--Seleccionar--</option>
+
+			@foreach (var item in listaDepartamento)
+			{
+				<option value="@item.Iddepartamento">@item.Nombre</option>
+			}
+
+		</InputSelect>
+		<ValidationMessage For="@(()=> paciente.Iddepartamento)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Correo Electronico</label>
+		<InputText class="form-control" @bind-Value="paciente.CorreoElectronico"> </InputText>
+		<ValidationMessage For="@(()=> paciente.CorreoElectronico)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Telefono</label>
+		<InputNumber class="form-control" @bind-Value="paciente.Telefono"> </InputNumber>
+		<ValidationMessage For="@(()=> paciente.Telefono)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Direccion (Domicilio)</label>
+		<InputText class="form-control" @bind-Value="paciente.Direccion"> </InputText>
+		<ValidationMessage For="@(()=> paciente.Direccion)"> </ValidationMessage>
+	</div>
+	
+	<div class= "mb-3">
+		<label class="form-label">Estado Civil</label>
+		<InputSelect class="form-select" @bind-Value="paciente.EstadoCivil"> 
+
+			<option  value="0">--Seleccionar--</option>
+			<option  value="Soltero">Soltero</option>
+			<option  value="Casado">Casado(a)</option>
+			<option  value="Unión Libre">Unión Libre</option>
+			<option  value="Comprometido(a)">Comprometido(a)</option>
+
+		</InputSelect>
+		<ValidationMessage For="@(()=> paciente.Iddepartamento)"> </ValidationMessage>
+	</div>
+
+
+	<div class= "mb-3">
+		<label class="form-label">Nacionalidad</label>
+		<InputText class="form-control" @bind-Value="paciente.Nacionalidad"> </InputText>
+		<ValidationMessage For="@(()=> paciente.Nacionalidad)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Fecha Nacimiento</label>
+		<InputText type="date" class="form-control" @bind-Value="paciente.FechaNacimiento"> </InputText>
+		<ValidationMessage For="@(()=> paciente.FechaNacimiento)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Fecha y Hora de Registro</label>
+		<InputDate class="form-control" @bind-Value="paciente.HoraRegistro"> </InputDate>
+		<ValidationMessage For="@(()=> paciente.HoraRegistro)"> </ValidationMessage>
+	</div>
+
+	<button class="btn btn-primary" type="submit">
+		@btnTexto 
+	</button>
+
+	<a class="btn btn-warning" href="pacientes">Volver</a>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int idPacienteEditar {get;set;} = 0;
+
+    string titulo = string.Empty;
+    string btnTexto = string.Empty;
+
+
+    PacienteDTO paciente = new PacienteDTO();
+    List<DepartamentoDTO> listaDepartamento = new List<DepartamentoDTO>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        if (idPacienteEditar != 0)
+
+		{
+			paciente = await PacienteService.Buscar(idPacienteEditar);
+			btnTexto = "Actualizar Paciente";
+			titulo = "Editar Paciente";
+				
+		} 
+		else
+		{
+			paciente.HoraRegistro = DateTime.Now;
+			btnTexto = "Guardar Paciente";
+			titulo = "Nuevo Paciente";
+		}
+
+		listaDepartamento = await departamentoService.Lista();
+		
+	}
+
+	private async Task OnValidSubmit()
+	{
+		int idDevuelto = 0;
+		if (idPacienteEditar == 0)
+		{
+			idDevuelto = await PacienteService.Guardar(paciente);
+		}			
+		else
+		{
+			idDevuelto = await PacienteService.Editar(paciente);
+		}
+
+		if (idDevuelto != 0)
+		{
+			navegacion.NavigateTo("/pacientes");
+		}		
+
+	}
+
+}

@@ -1,0 +1,40 @@
+﻿@page "/Index"
+
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization;
+@attribute [Authorize]
+
+
+@using Microsoft.AspNetCore.Components.Web
+
+<PageTitle>Bien</PageTitle>
+
+<h1> <strong> Bienvenida Lic. Guadalupe Mendoza </strong></h1>
+
+<br />
+	
+		<img style="width:150px" src="../Guadalupe.png.jpg" />
+
+<br />
+
+<div>
+	<p  align="left">
+		<strong>
+			<i>
+				<br/>
+				"Ser Completamente Honesto Con Uno Mismo Es Un Buen Ejercicio"
+				<br/> -Sigmund Freud-
+				
+			</i>
+				
+		</strong>
+		
+	</p>
+</div>
+
+<AuthorizeView>
+	<Authorized> 
+		<h1> <strong>Saludos! Espero Y Se Encuentre Muy Bien. @context.User.Identity!.Name</strong></h1>
+	</Authorized>
+</AuthorizeView>
+

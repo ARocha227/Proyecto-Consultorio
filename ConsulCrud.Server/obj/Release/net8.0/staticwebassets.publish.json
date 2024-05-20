@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "DPORghPJ7RsZhx6o/QfD7HfnGJO1WaNcE6wcj7+rO2Y=",
+  "Source": "ConsulCrud.Server",
+  "BasePath": "_content/ConsulCrud.Server",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

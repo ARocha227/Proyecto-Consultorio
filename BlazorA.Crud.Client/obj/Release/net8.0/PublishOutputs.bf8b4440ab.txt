@@ -1,0 +1,2 @@
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\BlazorA.Crud.Client\obj\Release\net8.0\browser-wasm\PubTmp\Out\staticwebapp.config.json
+C:\Users\alvar\Desktop\Aplicacion Web\SolucionConsultorio\BlazorA.Crud.Client\obj\Release\net8.0\browser-wasm\PubTmp\Out\web.config

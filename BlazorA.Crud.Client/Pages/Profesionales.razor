@@ -1,0 +1,125 @@
+﻿@page "/profesionales";
+@page "/profesionales/{idProfesionalEditar:int}";
+
+
+@using ConsulCrud.Shared;
+@using Blazor1.Crud.Client.Services;
+
+@inject IProfesionalService ProfesionalService;
+@inject NavigationManager navegacion;
+
+
+<h3>@titulo</h3>
+
+<EditForm Model="Profesional" OnValidSubmit="OnValidSubmit">
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+
+<div class= "mb-3">
+		<label class="form-label">Identificador</label>
+		<InputNumber class="form-control" @bind-Value="Profesional.IdIdentificador"></InputNumber>
+		<ValidationMessage For="@(() => Profesional.IdIdentificador)"> </ValidationMessage>
+	</div>
+
+<div class= "mb-3">
+		<label class="form-label">Nombre Completo</label>
+		<InputText class="form-control" @bind-Value="Profesional.NombreCompleto"> </InputText>
+		<ValidationMessage For="@(()=> Profesional.NombreCompleto)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Correo Electronico</label>
+		<InputText class="form-control" @bind-Value="Profesional.CorreoElectronico"> </InputText>
+		<ValidationMessage For="@(()=> Profesional.CorreoElectronico)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Telefono</label>
+		<InputNumber class="form-control" @bind-Value="Profesional.Telefono"> </InputNumber>
+		<ValidationMessage For="@(()=> Profesional.Telefono)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Codigo Profesional</label>
+		<InputText class="form-control" @bind-Value="Profesional.CdigoProfesional"> </InputText>
+		<ValidationMessage For="@(()=> Profesional.CdigoProfesional)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Direccion (Domicilio)</label>
+		<InputText class="form-control" @bind-Value="Profesional.Direccion"> </InputText>
+		<ValidationMessage For="@(()=> Profesional.Direccion)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Fecha Nacimiento</label>
+		<InputText type="date" class="form-control" @bind-Value="Profesional.FechaNacimiento"> </InputText>
+		<ValidationMessage For="@(()=> Profesional.FechaNacimiento)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Fecha y Hora de Registro</label>
+		<InputDate class="form-control" @bind-Value="Profesional.HoraRegistro"> </InputDate>
+		<ValidationMessage For="@(()=> Profesional.HoraRegistro)"> </ValidationMessage>
+	</div>
+
+	<button class="btn btn-primary" type="submit">
+		@btnTexto 
+	</button>
+
+	<a class="btn btn-warning" href="profesionals">Volver</a>
+
+</EditForm>
+
+@code {
+	[Parameter]
+	public int idProfesionalEditar { get; set; } = 0;
+
+	string titulo = string.Empty;
+	string btnTexto = string.Empty;
+	
+	ProfesionalDTO Profesional = new ProfesionalDTO();
+	List<ProfesionalDTO> listaProfesional = new List<ProfesionalDTO>();
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		if (idProfesionalEditar != 0)
+
+		{
+			Profesional = await ProfesionalService.Buscar(idProfesionalEditar);
+			btnTexto = "Actualizar Profesional";
+			titulo = "Editar Profesional";
+
+		}
+		else
+		{
+			Profesional.HoraRegistro = DateTime.Now;
+			btnTexto = "Guardar Profesional";
+			titulo = "Nuevo Profesional";
+		}
+
+		listaProfesional = await ProfesionalService.Lista();
+
+	}
+
+
+	private async Task OnValidSubmit()
+	{
+		int idDevuelto = 0;
+		if (idProfesionalEditar == 0)
+		{
+			idDevuelto = await ProfesionalService.Guardar(Profesional);
+		}
+		else
+		{
+			idDevuelto = await ProfesionalService.Editar(Profesional);
+		}
+
+		if (idDevuelto != 0)
+		{
+			navegacion.NavigateTo("/profesionals");
+		}
+
+	}
+
+}

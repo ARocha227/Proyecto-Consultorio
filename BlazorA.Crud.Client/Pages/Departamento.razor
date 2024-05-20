@@ -1,0 +1,96 @@
+﻿@page "/departamentos"
+@using ConsulCrud.Shared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using Blazor1.Crud.Client.Services;
+@using Microsoft.AspNetCore.Components.Web;
+@using Microsoft.AspNetCore.Components.WebAssembly;
+
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize(Roles = "Administrador")]
+
+@inject SweetAlertService SwalAR;
+
+@inject IDepartamentoService departamentoService
+
+
+<h3>Departamento</h3>
+
+<a class="btn btn-success btn-sm mb-3" href="departamenttos"> Nuevo Departamento </a>
+
+
+<table class="table">
+	<thead>
+		<tr>
+
+			<th>Nombre Departamento</th>
+			
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@if (listaDepartamento == null)
+		{
+				<tr>
+					<td colspan="2" align="center"> 
+						<img style="width:50px" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+
+					</td>
+				</tr>
+		}
+		else
+		{
+			@foreach (var item in listaDepartamento)
+			{
+						<tr>
+							<td>@item.Nombre</td>
+							
+
+						<td>
+							<a align="right" class="btn btn-primary mr-sm-2 mb-2" href="departamenttos/@item.Iddepartamento">
+							<i class="oi oi-pencil">Editar</i>		
+							</a>
+
+							<button type="button" align="right" class="btn btn-danger mr-sm-2 mb-2" @onclick="(() => Eliminar(item.Iddepartamento))">
+							<i class="oi oi-trash">Borrar</i>
+
+								</button>
+							</td>
+						</tr>
+			}
+		}
+		
+
+	</tbody>
+</table>
+
+@code {
+	List<DepartamentoDTO>? listaDepartamento = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		listaDepartamento = await departamentoService.Lista();
+
+	}
+
+	private async Task Eliminar(int id)
+	{
+		var resultado = await SwalAR.FireAsync(new SweetAlertOptions
+			{
+				Title = "Eliminar Departamento",
+				Text = "¿Deseas Eliminar el Departamento?",
+				Icon = SweetAlertIcon.Question,
+				ShowCancelButton = true
+
+			});
+		if (resultado.IsConfirmed)
+		{
+			var eliminado = await departamentoService.Eliminar(id);
+
+			if (eliminado)
+				listaDepartamento = listaDepartamento!.FindAll(e => e.Iddepartamento != id);
+		}
+		
+	}
+	
+}

@@ -1,0 +1,178 @@
+﻿@page "/diagnostticos";
+@page "/diagnostticos/{idDiagnosticoEditar:int}";
+
+
+@using ConsulCrud.Shared;
+@using Blazor1.Crud.Client.Services;
+
+@inject IPacienteService PacienteService;
+@inject IDiagnosticoService diagnosticoService;
+@inject IProfesionalService  profesionalService;
+@inject NavigationManager navegacion;
+
+<h3>@titulo</h3>
+
+<EditForm Model="diagnostico" OnValidSubmit="OnValidSubmit">
+	<DataAnnotationsValidator></DataAnnotationsValidator>
+
+	<div class= "mb-3">
+		<label class="form-label">Identificación Paciente</label>
+		<InputNumber class="form-select" @bind-Value="diagnostico.IdNuevo"> 
+
+			<option  value="0">--Seleccionar--</option>
+
+			@foreach (var item in listaPacientes)
+			{
+							<option value="@item.IdNuevo">@item.NombreCompleto</option>
+			}
+		</InputNumber>
+		<ValidationMessage For="@(()=> diagnostico.IdNuevo)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Nombre del Paciente</label>
+		<InputSelect class="form-select" @bind-Value="diagnostico.IdNuevo"> 
+
+			<option  value="0">--Seleccionar--</option>
+
+			@foreach (var item in listaPacientes)
+			{
+							<option value="@item.IdNuevo">@item.NombreCompleto</option>
+			}
+		</InputSelect>
+		<ValidationMessage For="@(()=> diagnostico.IdNuevo)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Motivo de Consulta</label>
+		<InputTextArea class="form-control" @bind-Value="diagnostico.MotivoConsulta"> </InputTextArea>
+		<ValidationMessage For="@(()=> diagnostico.MotivoConsulta)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Antecedente Patólogico</label>
+		<InputTextArea class="form-control" @bind-Value="diagnostico.AntecedentesPatologicos"> </InputTextArea>
+		<ValidationMessage For="@(()=> diagnostico.AntecedentesPatologicos)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Estilo de Vida</label>
+		<InputTextArea class="form-control" @bind-Value="diagnostico.EstiloVida"> </InputTextArea>
+		<ValidationMessage For="@(()=> diagnostico.EstiloVida)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Resultado</label>
+		<InputTextArea class="form-control" @bind-Value="diagnostico.Resultado"> </InputTextArea>
+		<ValidationMessage For="@(()=> diagnostico.Resultado)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Observaciones</label>
+		<InputTextArea class="form-control" @bind-Value="diagnostico.Observaciones"> </InputTextArea>
+		<ValidationMessage For="@(()=> diagnostico.Observaciones)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Profesional Evaluador</label>
+		<InputSelect class="form-select" @bind-Value="diagnostico.Evaluador"> 
+
+			<option  value="0">--Seleccionar--</option>
+
+			@foreach (var item in listaProfesional)
+			{
+						<option value="@item.IdCodigoP">@item.NombreCompleto</option>
+			}
+		</InputSelect>
+		<ValidationMessage For="@(()=> diagnostico.Evaluador)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Código Del Profesional</label>
+		<InputSelect class="form-select" @bind-Value="diagnostico.Evaluador"> 
+
+			<option  value="0">--Seleccionar--</option>
+
+			@foreach (var item in listaProfesional)
+			{
+							<option value="@item.IdCodigoP">@item.CdigoProfesional</option>
+			}
+		</InputSelect>
+		<ValidationMessage For="@(()=> diagnostico.Evaluador)"> </ValidationMessage>
+	</div>
+
+	<div class= "mb-3">
+		<label class="form-label">Fecha y Hora de Registro</label>
+		<InputDate class="form-control" @bind-Value="diagnostico.FechaRegistro"> </InputDate>
+		<ValidationMessage For="@(()=> diagnostico.FechaRegistro)"> </ValidationMessage>
+	</div>
+
+	<button class="btn btn-primary" type="submit">
+		@btnTexto 
+	</button>
+
+	<a class="btn btn-warning" href="diagnosticos">Volver</a>
+
+
+</EditForm>
+
+@code {
+
+	[Parameter]
+	public int idDiagnosticoEditar { get; set; } = 0;
+
+	string titulo = string.Empty;
+	string btnTexto = string.Empty;
+
+
+	DiagnosticoDTO diagnostico = new DiagnosticoDTO();
+	List<ProfesionalDTO> listaProfesional = new List<ProfesionalDTO>();
+	List<PacienteDTO> listaPacientes = new List<PacienteDTO>();
+	List<DiagnosticoDTO> listaDiagnostico = new List<DiagnosticoDTO>();
+
+	protected override async Task OnInitializedAsync()
+	{
+
+		if (idDiagnosticoEditar != 0)
+
+		{
+			diagnostico = await diagnosticoService.Buscar(idDiagnosticoEditar);
+			btnTexto = "Actualizar Diagnostico";
+			titulo = "Editar Diagnostico";
+
+		}
+		else
+		{
+			diagnostico.FechaRegistro = DateTime.Now;
+			btnTexto = "Guardar Diagnostico";
+			titulo = "Nuevo Diagnostico";
+		}
+
+		listaProfesional = await profesionalService.Lista();
+		listaPacientes = await PacienteService.Lista();
+		listaDiagnostico = await diagnosticoService.Lista();
+
+	}
+
+	private async Task OnValidSubmit()
+	{
+		int idDevuelto = 0;
+
+		if (idDiagnosticoEditar == 0)
+		{
+			idDevuelto = await diagnosticoService.Guardar(diagnostico);
+
+		}
+		else
+		{
+			idDevuelto = await diagnosticoService.Editar(diagnostico);
+		}
+
+		if (idDevuelto != 0)
+		{
+			navegacion.NavigateTo("/diagnosticos");
+		}
+
+	}
+
+}

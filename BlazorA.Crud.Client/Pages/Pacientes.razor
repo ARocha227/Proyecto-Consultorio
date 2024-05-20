@@ -1,0 +1,107 @@
+﻿@page "/pacientes"
+@using ConsulCrud.Shared;
+@using Blazor1.Crud.Client.Services;
+@using CurrieTechnologies.Razor.SweetAlert2;
+
+
+@inject SweetAlertService SwalR;
+
+@inject IPacienteService pacienteservice;
+
+
+
+<h3>Pacientes</h3>
+
+<a class="btn btn-success btn-sm mb-3" href="paciente"> Nuevo Paciente </a>
+
+
+<table class="table">
+	<thead>
+		<tr>
+		
+			<th>Identificador</th>
+			<th>Nombre Completo</th>
+			<th>Departamento</th>
+			<th>Correo Electronico</th>
+			<th>Telefono</th>
+			<th>Dirección</th>
+			<th>Estado Civil</th>
+			<th>Nacionalidad</th>
+			<th>Fecha Nacimiento</th>
+			<th>Fecha y Hora Registro</th>
+			<th></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@if (listaPaciente == null)
+		{
+			<tr>
+				<td colspan="11" align="center"> 
+					<img style="width:50px" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+
+				</td>
+			</tr>
+		}
+		else
+		{
+			@foreach(var item in listaPaciente) {
+				<tr>
+					<td>@item.IdPaciente</td>
+					<td>@item.NombreCompleto</td>
+					<td>@item.Departamento!.Nombre</td>
+					<td>@item.CorreoElectronico</td>
+					<td>@item.Telefono</td>
+					<td>@item.Direccion</td>
+					<td>@item.EstadoCivil</td>
+					<td>@item.Nacionalidad</td>
+					<td>@item.FechaNacimiento</td>
+					<td>@item.HoraRegistro</td>
+
+					<td>
+										<a class="btn btn-primary mr-sm-2 mb-2" href="paciente/@item.IdNuevo">
+											<i class="oi oi-penci">Editar</i>		
+						</a>
+
+										<button type="button" class="btn btn-danger mr-sm-2 mb-2" @onclick="(()=> Eliminar(item.IdNuevo))">
+								<i class="oi oi-trash">Borrar</i>
+
+						</button>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+
+
+@code {
+    List<PacienteDTO>? listaPaciente = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        listaPaciente = await pacienteservice.Lista();
+
+    }
+
+    private async Task Eliminar ( int id)
+    {
+        var resultado = await SwalR.FireAsync(new SweetAlertOptions
+		{
+			Title = "Eliminar Paciente",
+			Text = "¿Deseas Eliminar el paciente?",
+			Icon = SweetAlertIcon.Question,
+			ShowCancelButton = true
+
+		});
+
+        if (resultado.IsConfirmed)
+        {
+            var eliminado = await pacienteservice.Eliminar(id);
+
+            if (eliminado)
+                listaPaciente = listaPaciente!.FindAll(e => e.IdNuevo != id);
+		}
+	}
+
+}
